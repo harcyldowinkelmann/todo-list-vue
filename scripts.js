@@ -1,24 +1,26 @@
-var todos = [
-    {
-        text: 'Aprender HTML, CSS e Javascript',
-        done: true
-    },
-    {
-        text: 'Aprender o básico de Vue JS',
-        done: true
-    },
-    {
-        text: 'Completar o desafio de Vue JS com excelência',
-        done: false
-    }
-];
 
 const todosApp = {
     data() {
         return {
-            toDos: window.todos
+            toDos: [],
+            newTodo: {
+                done: false
+            }
         };
-    }
+    },
+    methods: {
+        addTodo: function() {
+            if(this.newTodo.text) {
+                this.toDos.push(this.newTodo);
+                this.newTodo = { done: false };
+            } else {
+                window.alert('Você precisa fornecer uma descrição para sua nova tarefa!');
+            }
+        },
+        clearTodo: function() {
+            this.toDos = []
+        }
+    },
 };
 
 Vue.createApp(todosApp).mount('#app');

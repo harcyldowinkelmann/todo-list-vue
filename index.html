@@ -25,16 +25,16 @@
                         v-for="task in toDos"
                         class="single-todo" 
                         :class="{ done : task.done }"
-                        @click="task.done = !task.done"
+                        @click="task.done = !task.done; storeTodos()"
                     >
                         <p>{{ task.text }}</p>
                     </div>
                 </div>
 
-                <button v-if="toDos.length > 0" class="clear" @click="clearTodo()">Limpar tudo</button>
+                <button v-if="toDos.length > 0" class="clear" @click="clearTodo(); storeTodos()">Limpar tudo</button>
 
                 <input type="text" placeholder="Escreva uma nova tarefa..." v-model="newTodo.text">
-                <button class="add" @click="addTodo()">Adicionar</button>
+                <button class="add" @click="addTodo(); storeTodos()">Adicionar</button>
 
                 <div class="instructions">
                     Instruções:
